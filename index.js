@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const {graphqlHTTP} = require('express-graphql');
+const {schemas} = require('./graphql/schemas');
+const {resolvers} = require('./graphql/resolvers');
 
 // Initialize Express app
 const app = express();
@@ -17,6 +20,12 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Express.js application' });
 });
 
+//API
+app.use("/graphql", graphqlHTTP({
+  schema: schemas,
+  rootValue: resolvers,
+  graphiql: true
+}))
 
 // Error handling middleware
 app.use((req, res, next) => {
