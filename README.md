@@ -1,11 +1,12 @@
-# Express.js Application
+# Express.js GraphQL Application
 
-A simple Express.js application with API endpoints and static file serving.
+An Express.js application with GraphQL API integration and static file serving.
 
 ## Features
 
 - Express.js server setup
-- API routes with sample endpoints
+- GraphQL API implementation
+- GraphiQL browser interface
 - Static file serving
 - Error handling middleware
 
@@ -37,8 +38,8 @@ A simple Express.js application with API endpoints and static file serving.
 Once the server is running, you can access:
 
 - Web interface: [http://localhost:3000](http://localhost:3000)
-- API endpoint: [http://localhost:3000/api](http://localhost:3000/api)
-- Sample users: [http://localhost:3000/api/users](http://localhost:3000/api/users)
+- GraphQL endpoint: [http://localhost:3000/graphql](http://localhost:3000/graphql)
+- GraphiQL interface: [http://localhost:3000/graphql](http://localhost:3000/graphql) (in browser)
 
 ## Project Structure
 
@@ -48,6 +49,9 @@ node-graphql-app/
 ├── package.json       # Project dependencies and scripts
 ├── public/            # Static files
 │   └── index.html     # Simple web interface
+├── graphql/           # GraphQL implementation
+│   ├── schemas.js     # GraphQL schema definitions
+│   └── resolvers.js   # GraphQL resolvers
 └── routes/            # Application routes
     └── api.js         # API endpoints
 ```
@@ -56,6 +60,36 @@ node-graphql-app/
 
 - `GET /api`: Returns API status and timestamp
 - `GET /api/users`: Returns a list of sample users
+
+## GraphQL API
+
+The application provides a GraphQL API endpoint at `/graphql`. You can use the GraphiQL interface to explore and test queries.
+
+### Available Queries
+
+- `hello`: Returns a TestData object with text and views properties
+
+Example query:
+```graphql
+{
+  hello {
+    text
+    views
+  }
+}
+```
+
+Expected response:
+```json
+{
+  "data": {
+    "hello": {
+      "text": "Hello World",
+      "views": 1001
+    }
+  }
+}
+```
 
 ## License
 
