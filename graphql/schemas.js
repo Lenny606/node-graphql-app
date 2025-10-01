@@ -24,6 +24,13 @@ const schemas = buildSchema(`
         email: String!
         password: String!
     }
+
+    input PostInput {
+        title: String!
+        content: String!
+        image: String
+        authorId: ID!
+    }
     
     type TestData {
         text: String!
@@ -32,9 +39,16 @@ const schemas = buildSchema(`
        
     type Mutation {
          createUser(userInput: UserInput): User!
+         updateUserStatus(id: ID!, status: String!): User!
+         createPost(postInput: PostInput!): Post!
+         deletePost(id: ID!): Boolean!
     }
     type Query {
         hello: TestData!
+        user(id: ID!): User
+        users: [User!]!
+        post(id: ID!): Post
+        posts: [Post!]!
     }
 
     schema {
